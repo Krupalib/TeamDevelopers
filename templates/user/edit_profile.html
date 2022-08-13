@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+      <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+      <style >
+        body {
+            margin: 0;
+           text-align: left;
+          font-family: 'Merriweather', serif;
+          padding-left: 0px;
+            <!-- background: url(  "{%static "images/pexels-lukas-349609.jpg"%}" ) no-repeat center center fixed; -->
+            background-size: cover;
+            }
+
+      </style>
+  </head>
+  <body>
+    <div id="navbar">
+      <a href="{% url 'dashboard-recipe' %}">Recipes</a>
+      <a href="{% url 'user-login' %}">Login</a>
+      <a href="add_recipe">Add Recipe</a>
+      <a class="nav-link text-white" align = center   href="{% url 'user-logout' %}">Logout</a>
+      <a class="nav-link text-white" href="{% url 'user-register' %}">Register </a>
+      <a href="edit_profile">Edit Profile</a>
+      </div>
+    <h3>You can edit the profile information: </h3>
+    <form class="edit_profile" method="POST" >
+        {% csrf_token %}
+      {{ form.as_p }}
+      <!-- <h3>Email address: <input type="text" name="email_id" value=""></h3> -->
+
+      <button type="submit" name="button">Submit</button>
+    </form>
+    <br>
+<script src="{% static "js/index.js" %}" charset="utf-8"></script>
+  </body>
+</html>

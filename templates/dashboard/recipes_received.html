@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html lang="en" dir="ltr">
+  <head>
+      <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+    <meta charset="utf-8">
+    <title></title>
+    <style media="screen">
+      th,td{
+        padding:5px;
+         border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="navbar" style= " background-color: #17a2b8">
+
+      <a href="{% url 'dashboard-recipe' %}">Recipes</a>
+      <a href="{% url 'user-login' %}">Login</a>
+
+      <a class="nav-link text-white" align = center   href="{% url 'user-logout' %}">Logout</a>
+
+
+
+    </div>
+<br>
+<br>
+<br>
+
+
+    <h2>Following Recipes are shared to you: </h2>
+
+    <table class = "shared_recipes">
+      <head>
+        <th>Shared By </th>
+        <th> recipe </th>
+
+      </head>
+      <tbody>
+        {% if recipe_list %}
+        {% for recipe in recipe_list %}
+        <tr>
+
+
+        <td >{{recipe.shared_by}}</td>
+        <td ><a href= "{% url 'steps' id=recipe.recipe_id.recipe_id  %}">{{recipe.recipe_id.recipe_name}}</a></td>
+        </tr>
+        {% endfor %}
+        {% endif %}
+      </tbody>
+    </table>
+    <script src="{% static "js/index.js" %}" charset="utf-8"></script>
+  </body>
+</html>

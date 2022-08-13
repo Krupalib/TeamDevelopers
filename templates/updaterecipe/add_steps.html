@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+      <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+    <title></title>
+    <style >
+      body {
+          margin: 0;
+          text-align: left;
+        font-family: 'Merriweather', serif;
+        padding-left: 50px;
+          <!-- background: url(  "{%static "images/pexels-lukas-349609.jpg"%}" ) no-repeat center center fixed; -->
+          background-size: cover;
+          }
+
+    </style>
+  </head>
+  <body>
+    <div id="navbar1" style= " background-color: #17a2b8">
+
+      <a href="{% url 'recipe' %}">Recipes</a>
+      <a href="{% url 'user-login' %}">Login</a>
+      <a href="#">Update Recipe</a>
+
+    </div>
+
+<h2>Please add the steps to cook : </h2>
+<h3>Please add atleast two steps for all the functionality to work for this recipe: </h3>
+
+<form class="add_steps" method="post">
+    {% csrf_token %}
+<h3>  Step no. : <input type="number" name="step_no" value=""></h3>
+<h3> Utensil :
+<select class="utensil" name="utensil">
+  {% for utensil in utensils  %}
+  <option>  {{utensil.utensil_name}}</option>
+  {% endfor %}
+</select>
+</h3>
+<h3> Ingredient :
+<select class="ingredient" name="ingredient">
+  {% for ingredient in ingredients  %}
+  <option>  {{ingredient.ingredient_name}}</option>
+  {% endfor %}
+</select>
+</h3>
+<h3>Process : <input type="text" name="process" placeholder="Describe the process in short phrase" size="40" value=""></h3>
+<h3>  Cooking Temperature : <input type="number" name="temperature" placeholder="Temperature in °C" value=""></h3>
+<h3>  Cooking Time : <input type="number" placeholder="time in minutes" name="cooking_time" value=""></h3>
+
+<button  type="submit">  ADD</button>
+</form>
+
+
+
+  </body>
+</html>

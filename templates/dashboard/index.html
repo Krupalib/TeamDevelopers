@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+{%load static%}
+
+<html>
+<head>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="{% static "css/styles.css" %}"/>
+<link rel="icon" href="{% static "images/robo.jpg" %}">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+<body
+style="background:url("{% static "images/pexels-lukas-349609.jpg" %}" ) no-repeat center center fixed;">
+
+<div id="navbar" style= " background-color: #036">
+
+  <a href="{% url 'dashboard-recipe' %}">Recipes</a>
+  <a href="{% url 'user-login' %}">Login</a>
+  <a href="#">Add new Recipe</a>
+
+</div>
+
+<div style="padding:15px 15px 2500px;font-size:30px;text-align: center;font-family: Arial, sans-serif">
+<p> <img src="https://media1.giphy.com/media/xUPGGDNsLvqsBOhuU0/200.webp?cid=ecf05e47rruy4xw03s2fnxnqxg3u05q2k0zei2dqxwltygta&rid=200.webp&ct=g" alt="Welcome"> </p>
+<p><h1><strong>* Browse a variety of recipes down below *</strong></h1></p>
+ <hr>
+
+
+  <table>
+  <tr>
+    <td> <a href="https://en.wikipedia.org/wiki/Pasta"><h2><strong><u> PASTA :</u></strong></h2></a>
+      <h3></h3> Pasta is typically a <b>Noodle</b> traditionally made from an <i>unleavened dough of durum wheat flour</i>  mixed with water and formed into sheets and cut, or extruded into various shapes, then cooked and served in a number of dishes. It can be made with flour from other cereals or grains, and eggs may be used instead of water.</td>
+    <td><img class="pasta" src="https://media0.giphy.com/media/MU7DwSE5Ulla8/giphy.webp?cid=ecf05e47rquqip7haj71xrxnp11y50r5ozi9dn78qssw4n9c&rid=giphy.webp&ct=g"></td>
+  </tr>
+  <p>                                           </P>
+  <tr>
+
+    <td> <a href="https://en.wikipedia.org/wiki/Pizza"><h2><strong> <u>PIZZA:</u> </strong></h2></a> pizza, dish of <b>Italian</b> origin consisting of a <i>flattened disk of bread dough</i> topped with some combination of <olive oil, oregano, tomato, olives, mozzarella or other cheese>, and many other ingredients, baked quickly—usually, in a commercial setting, using a wood-fired oven heated to a very high temperature—and served hot ...</td>
+    <td><img class="pizza" src="https://media4.giphy.com/media/YfLdTsfMIfHX2/giphy.webp?cid=ecf05e47ck8ltxo67wvu5kkuep4kywjnedswwtw6amvo2hul&rid=giphy.webp&ct=g"></td>
+
+  </tr>
+  <tr>
+
+    <td> <a href="https://en.wikipedia.org/wiki/Salad"><h2><strong> <u>SALAD:</u> </strong></h2></a> A salad is a dish consisting of <b>Mixed</b> , mostly natural ingredients with at least one <i>raw ingredient</i> . They are often dressed, and typically served at room temperature or chilled, though some can be served warm.</td>
+    <td><img class="salad" src="https://media2.giphy.com/media/tolaGqMj46lwxzTurd/200w.webp?cid=ecf05e47kn3w8c8vnm8vadp7skd8qz2u9uihyj3l7gkvc7ax&rid=200w.webp&ct=g"></td>
+
+  </tr>
+  <tr>
+
+    <td> <a href="https://en.wikipedia.org/wiki/Hamburger"><h2><strong> <u>BURGER:</u> </strong></h2></a> <b>Shortened in length</b> , the term Burger is used to describe a popular sandwich made from <i>ground meats that are formed into a patty</i> , cooked, and placed between two halves of a bun. Although the most common Burger is made with meat, there are many alternatives that do not include meat, such as tofu or ground vegetables.</td>
+    <td><img class="burger" src="https://media2.giphy.com/media/tk2MjKGg0h04g/200w.webp?cid=ecf05e47vsqndpf4uik61vzq6um222uet681a9y9lkuh91sy&rid=200w.webp&ct=g"></td>
+
+  </tr>
+</table>
+<button class="button">
+   <a href="{% url 'recipe' %}">View more</a>
+</button>
+
+</div>
+<script src="{% static "js/index.js" %}" charset="utf-8"></script>
+
+</div>
+
+
+<div class="bottom-container">
+<div class="link">
+<a class="footer-link" href="https://www.linkedin.com/in/neel-patel-14370722a">Facebook</a>
+</div>
+<p>© Recipe Manager Robot.</p>
+</div>
+</body>
+</html>
+
+
+{%block content%}
+{%endblock%}

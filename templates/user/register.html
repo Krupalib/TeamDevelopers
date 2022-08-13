@@ -1,0 +1,23 @@
+
+{% extends 'partials/base.html' %}
+{% block content %}
+
+{% load crispy_forms_tags %}
+
+<!--Register-->
+<div style="text-align: center;background-color: white; display:table; margin:auto;  " id="clock">
+          <h1>Register</h1>
+    </div>
+
+
+	<form method="POST">
+		{% csrf_token %}
+		{{ register_form|crispy }}
+		<button class="btn btn-primary" type="submit">Register</button>
+    <p class="text-center">If you already have an account, <a href="/login">login</a> instead.</p>
+	</form>
+
+
+
+
+{% endblock %}

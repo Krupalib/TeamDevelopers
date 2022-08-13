@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>   </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+
+    <!--<link rel="stylesheet" href="{% static "/css/styles.css" %}"/> --->
+    <style>
+          .checked {
+          color: orange;
+}
+#navbar a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.button {
+  border: 1px solid #555;
+  border-radius: 9px;
+  color: #c94c4c;
+  padding: 10px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+
+}
+.button:hover{
+  color: black;
+  background: #11999E;;
+}
+</style>
+  </head>
+  <body>
+    <h3> Welcome {{user.username}}</h3>
+
+    <div id="navbar" style= " background-color: #17a2b8">
+
+      <a href="{% url 'recipe' %}">Recipes</a>
+      <a href="{% url 'user-login' %}">Login</a>
+      <a href="add_recipe">Add Recipe</a>
+
+    </div>
+
+{% if recipe %}
+
+<h2 class = 'recipe_name'>{{recipe.recipe_id.recipe_name}}</h2>
+
+
+{% endif %}
+
+<h3>Rate the recipe : </h3>
+<div class="col text-center">
+
+
+
+
+<!--id=recipe.recipe_id.recipe_id-->
+
+<form class="rate-form" method="POST" id='{{recipe.recipe_id.recipe_id  }}' >
+  {% csrf_token %}
+
+
+  <button type="submit" class="fa fa-star fa-2x my-btn " id= "first" name = "first"></button>
+  <button type="submit" class="fa fa-star fa-2x my-btn " id= "second" name = "second"></button>
+  <button type="submit" class="fa fa-star fa-2x my-btn " id= "third" name = "third"></button>
+  <button type="submit" class="fa fa-star fa-2x my-btn " id= "fourth" name = "fourth"></button>
+  <button type="submit" class="fa fa-star fa-2x my-btn " id= "fifth" name = "fifth"></button>
+  <input type="hidden" id = "current_user"  value={{user}}>
+
+
+  </form>
+  <br>
+  <form class="" action="/share_recipe/" method="post">
+    {% csrf_token %}
+      <h3> Share to: <select class="" name="shared_to">
+        {%  if user_list%}
+        {% for user in user_list %}
+        <option value="{{user.username}}">{{user}}</option>
+
+        {% endfor %}
+        {% endif %}
+        <input type="hidden" name="recipe"  value={{id}}>
+      </select></h3>
+
+      <button type="submit" name="button">Share the recipe</button>
+  </form>
+
+  <br>
+  <div id="confirm-box"></div>
+  </div>
+
+<h2 >Ingredients used in the recipe: </h2>
+<br>
+
+
+
+  {% if process %}
+<table class = 'ingredient' >
+  {% for step in process %}
+  {% if step.ingredient_id.ingredient_id != 1111 %}
+<tr>
+  <td>{{step.ingredient_id.ingredient_name}}</td>
+</tr>
+{% endif %}
+{% endfor %}
+</table>
+
+
+<h2>Recipe Steps: </h2>
+<table class = 'steps'>
+
+    <thead>
+      <tr>
+        <td>Step number</td>
+        <td>ingredient</td>
+        <td>utensil used</td>
+        <td>process</td>
+        <td></td>
+      </tr>
+    </thead>
+    <tbody>
+   {%for step in process%}
+    <tr>
+      <td>{{step.step_no}}</td>
+      <td>{{step.ingredient_id.ingredient_name}}</td>
+      <td>{{step.utensil_id.utensil_name}}</td>
+      <td>{{step.process}}</td>
+    </tr>
+  {%endfor%}
+
+    </tbody>
+</table>
+<button type="button" name="button" class="button"><a href="{% url 'dashboard-recipe' %}">Go Back to Home </a></button>
+
+{% endif %}
+
+<script src="{% static "/js/index.js" %}" charset="utf-8"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+
+  </body>
+</html>

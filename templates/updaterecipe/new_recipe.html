@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+    <title></title>
+  </head>
+  <body>
+    <div id="navbar" style= " background-color: #17a2b8">
+
+      <a href="{% url 'recipe' %}">Recipes</a>
+      <a href="{% url 'user-login' %}">Login</a>
+      <a href="#">Update Recipe</a>
+
+    </div>
+
+  <br>
+  <br>
+
+    <h2>Fill the below information for adding new recipe: </h2>
+    <form class="add_recipe" method="POST" >
+      {% csrf_token %}
+
+
+      <h3>Recipe Name: <input type="text" placeholder="Name of Recipe" name="recipe_name" value=""></h3>
+      <h3>Description: <input type="text" placeholder="Description" name="description" value=""></h3>
+      <h3>Recipe ID: <input type= "number" placeholder="Recipe ID" name="recipe_id" value=""></h3>
+      <h3>Cooking Time: <input type= "number" placeholder="Cooking time" name="cooking_time" value=""></h3>
+      <h3>number of servers: <input type="number" placeholder="number of serves" name="number_of_serves" value=""></h3>
+      <!-- <h3>Keyword: <input type="text" placeholder="Keyword" name="keyword"></h3>       -->
+      <h3>Keyword : <select class="" name="keyword">
+        <option value="Breakfast">Breakfast</option>
+          <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+      </select></h3>
+    <button  type="submit">  ADD</button>
+    {% if status%}
+
+    <h3>{{status}}</h3>
+
+    {% endif %}
+
+
+{% if flag  %}
+{% if rec %}
+<a href= "{% url 'add_steps' id=rec.recipe_id  %}" >YOU CAN ADD STEPS</a>
+{% endif %}
+{% endif %}
+
+
+      </form>
+    <script src="{% static "js/index.js" %}" charset="utf-8"></script>
+  </body>
+</html>

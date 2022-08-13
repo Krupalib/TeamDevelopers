@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+{%load static%}
+
+{% block content%}
+
+
+<html>
+<head>
+  <link rel="stylesheet" href="{% static "/css/styles.css" %}"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat&family=Sacramento&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <div id="navbar">
+    <a href="{% url 'dashboard-recipe' %}">Recipes</a>
+    <a href="{% url 'user-login' %}">Login</a>
+    <a href="add_recipe">Add Recipe</a>
+    <a class="nav-link text-white" align = center   href="{% url 'user-logout' %}">Logout</a>
+    <a class="nav-link text-white" href="{% url 'user-register' %}">Register </a>
+    <a href="edit_profile">Edit Profile</a>
+
+    <div class="search-container">
+
+     <form class = "">           <!---REFER FOR SAVING INTO DATABASE -->
+       {% csrf_token %}
+       <input type="text" placeholder="Name of Recipe" name="name_of_recipe">
+
+       <select class="dropdown" name="name_of_ingredient">
+         <option selected disabled = 'true'>--- Ingredients --- </option>
+           {% for rec in ingredient %}
+         <option> {{rec.ingredient_name}}</option>
+           {% endfor %}
+       </select>
+       <select class="dropdown" name="cooking_time">
+         <option selected disabled = 'true'>--- Cooking Time in minutes ---</option>
+         {% for rec in recipe %}
+         <option> {{rec.cooking_time}}</option>
+         {% endfor %}
+       </select>
+       <select class="dropdown" name="keyword">
+         <option selected disabled = 'true'>--- Keyword ---</option>
+         {% for rec in keyword %}
+         <option> {{rec.keyword}} </option>
+         {% endfor %}
+
+       </select>
+       <select class="dropdown" name="rating">
+         <option selected disabled = 'true'>--- Rating ---</option>
+         <option value=5> 5 - Star </option>
+         <option value=4> 4 - Star </option>
+         <option value=3> 3 - Star </option>
+         <option value=2> 2 - Star </option>
+         <option value=1> 1 - Star </option>
+       </select>
+        <button class="search_button" type="submit">Search</button>
+
+
+     </form>
+    </a>
+   </div>
+  </div>
+  <div style="padding:15px 15px 2500px;font-size:30px;text-align: center;">
+    <p> <h1><strong>^ Visit a list of Cuisines ^</strong></h1></p>
+    <hr>
+    <a href="recipes_received"> Recipes received </a>
+{% if recipe %}
+
+<table>
+
+<tbody>
+  {% for rec in recipe %}
+  <tr>
+    <td> <h2><strong> <u><a href= "{% url 'steps' id=rec.recipe_id  %}"> {{rec.recipe_name}}</a></u> </strong></h2>
+      <br>{{rec.description}}
+          </td>
+  </tr>
+</tbody>
+  {% endfor %}
+</table>
+
+{% endif %}
+
+
+<!---
+<table>
+<tr>
+  <td> <h2><strong> <u>INDIAN FOOD:</u> </strong></h2> Spicy, rich, <b>flavourful and diverse</b> are terms that are frequently used to describe Indian food. All these words are apt in describing Indian cuisine, for it is diverse in variety and taste, and is made up from a wide array of <i>regional cuisines throughout various parts of India.</i> </td>
+  <td><img class="Indian" src="https://media0.giphy.com/media/3oeSANlR56jz1tEPao/200w.webp?cid=ecf05e47hgb8ll2wxo4zm5apx5spysvox4nyyfjnqxm5ewsx&rid=200w.webp&ct=g"></td>
+</tr>
+<p>                                           </P>
+<tr>
+
+  <td> <h2><strong> <u>THAI FOOD:</u> </strong></h2> Thai food encompasses a wide range of styles from <b>BBQ to stir fry</b> , curries to spicy salads, soups to steamed dishes and porridge to crispy insects. Thai food usually has a blend of <i>sour, sweet, salt, and savory tastes plus heat from chilis.</i> Some dishes add a creamy consistency from coconut milk.</td>
+  <td><img class="Thai" src="https://media3.giphy.com/media/8c0SVNIz3SRpWSdfgA/giphy.webp?cid=ecf05e47j478npgpmwb263l4qai41wuy6o0080f8kol3fb43&rid=giphy.webp&ct=g"></td>
+
+</tr>
+<tr>
+
+  <td> <h2><strong> <u>ITALIAN FOOD:</u> </strong></h2> Italian cuisine is a <b>Mediterranean cuisine</b> consisting of the ingredients, recipes and cooking techniques developed across the <i>Italian Peninsula since antiquity</i> , and later spread around the world together with waves of Italian diaspora. Significant changes occurred with the colonization of the Americas and the introduction of potatoes, tomatoes, capsicums, maize and sugar beet.</td>
+  <td><img class="Italian" src="https://media0.giphy.com/media/jmZGe1lFwchYx7mz4d/giphy.webp?cid=ecf05e47pwbyvmj6kkm1jnyu9s1hfsmrbixk17d6oplpisei&rid=giphy.webp&ct=g"></td>
+
+</tr>
+<tr>
+
+  <td> <h2><strong> <u>CHINESE FOOD:</u> </strong></h2>A typical Chinese meal will have two things - a <b>Carbohydrate or Starch</b> like noodles, rice or buns, and accompanying stir fries or dishes of veggies, fish and meat. They use a lot of <i>fresh vegetables like mushroom, water chestnuts, bamboo and even tofu.</i> </td>
+  <td><img class="Chinese" src="https://media1.giphy.com/media/l0DAG1SA8danAZ1iE/200.webp?cid=ecf05e474zhb1iy6gzt8xkotqxqqfv6nd6ki2qdqjn353lgo&rid=200.webp&ct=g"></td>
+
+</tr>
+</table>
+
+--->
+
+<script src="{% static "js/index.js" %}" charset="utf-8"></script>
+
+
+
+
+</body>
+
+</html>
+
+{% endblock %}
